@@ -1,0 +1,16 @@
+query ($id: ID!) {
+  person(id: $id) {
+    data {
+      id
+      attributes {
+        slug
+        name
+        surname
+        gender
+        email
+        phone
+        birth_date
+      }
+    }
+  }
+}

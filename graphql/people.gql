@@ -1,0 +1,11 @@
+query {
+  people {
+    data {
+      id
+      attributes {
+        name
+        slug
+      }
+    }
+  }
+}
