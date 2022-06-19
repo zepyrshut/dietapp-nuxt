@@ -2,7 +2,7 @@
   <v-app>
 
     <v-navigation-drawer app v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp">
-      <v-list>
+      <v-list color="primary--text" nav>
 
 
 
@@ -28,7 +28,7 @@
               <v-icon>mdi-format-list-bulleted</v-icon>
             </v-list-item-icon>
           </v-list-item>
-          <v-list-item :to="{ name: 'people-new' }">
+          <v-list-item :to="{ name: 'new-person' }">
             <v-list-item-title>Nuevo paciente</v-list-item-title>
             <v-list-item-icon>
               <v-icon>mdi-account-multiple-plus-outline</v-icon>
@@ -56,9 +56,9 @@
 
     </v-navigation-drawer>
 
-    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp">
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+    <v-app-bar app :clipped-left="$vuetify.breakpoint.lgAndUp" color="primary" text="secondary">
+      <v-app-bar-nav-icon @click="drawer = !drawer" color="white"></v-app-bar-nav-icon>
+      <v-toolbar-title v-text="title" class="font-white"></v-toolbar-title>
     </v-app-bar>
 
 
@@ -100,3 +100,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.font-white {
+  color: white;
+}
+</style>

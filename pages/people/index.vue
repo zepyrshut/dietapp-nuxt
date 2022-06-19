@@ -1,22 +1,42 @@
 <template>
-
-  <div>
-    <div v-for="person in people" :key="person.id">
-      <v-btn :to="{ path: 'person', name: 'person-slug', params: { slug: person.attributes.slug, id: person.id }, }"
-        class="my-1">{{
-            person.attributes.name
-        }}
-      </v-btn>
-    </div>
-  </div>
-
+  <v-container>
+    <v-text-field v-model="search" append-icon="mdi-magnify" label="Buscar" hide-details></v-text-field>
+    <v-data-table :headers="headers" :items="people" item-key="id" :search="search">
+      <template v-slot:item.controls="props">
+        <a @click="onButtonClick(props.item.attributes.slug, props.item.id)">
+          <v-icon class="hoverable">mdi-pencil-outline</v-icon>
+        </a>
+      </template>
+    </v-data-table>
+  </v-container>
 </template>
 
 <script>
 export default {
   name: 'IndexPeople',
   data() {
-    return {}
+    return {
+      search: '',
+      headers: [
+        {
+          text: 'Nombre',
+          value: 'attributes.name',
+        },
+        {
+          text: 'Apellido',
+          value: 'attributes.lastname',
+        },
+        {
+          text: 'Alias',
+          value: 'attributes.slug',
+        },
+        {
+          text: '',
+          value: 'controls',
+          sortable: false
+        }
+      ]
+    }
   },
 
   async asyncData(context) {
@@ -33,5 +53,19 @@ export default {
 
     return { people }
   },
+
+  methods: {
+    onButtonClick(slug, id) {
+      console.log(slug)
+      this.$router.push({ path: 'person', name: 'person-slug', params: { slug, id } })
+
+    }
+  }
 }
 </script>
+
+<style>
+.hoverable:hover {
+  color: #cc8e35;
+}
+</style>
